@@ -10,10 +10,10 @@ function drawGraph(nodes, links) {
  
 
 
-  const simulation = d3.forceSimulation(nodes)
-    .force("link", d3.forceLink(links).id(d => d.id).distance(100))
-    .force("charge", d3.forceManyBody().strength(-300))
-    .force("center", d3.forceCenter(width / 2, height / 2));
+  // const simulation = d3.forceSimulation(nodes)
+  //   .force("link", d3.forceLink(links).id(d => d.id).distance(100))
+  //   .force("charge", d3.forceManyBody().strength(-300))
+  //   .force("center", d3.forceCenter(width / 2, height / 2));
 
   // Create an expanded links array
   const processedLinks = [];
@@ -27,6 +27,12 @@ function drawGraph(nodes, links) {
       processedLinks.push({ ...link, offset: 0 });
     }
   });
+
+  // Create simulation using processedLinks so the force mutates the same link objects we draw
+  const simulation = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(processedLinks).id(d => d.id).distance(100))
+    .force("charge", d3.forceManyBody().strength(-300))
+    .force("center", d3.forceCenter(width / 2, height / 2));
 
   const link = svg.append("g")
     .selectAll("line")
