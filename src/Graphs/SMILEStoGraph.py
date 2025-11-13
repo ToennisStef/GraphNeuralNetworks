@@ -54,7 +54,7 @@ def SMILEStoGraph(SMILES_str:str):
         bonds.append(str(bond.GetBondType()))
         
     # Get Molecule data from COSMO_database
-    solvents = pd.read_csv("/home/stefan/GIT_Repositories/GraphNeuralNetworks/Solvents.txt")
+    solvents = pd.read_csv("Solvents.txt") # Path to be changed accordingly
     if SMILES_str not in solvents["SMILES"].values:
         # raise ValueError(f"SMILES string {SMILES_str} not found in the solvents database.")
         print(f"SMILES string {SMILES_str} not found in the solvents database.")
