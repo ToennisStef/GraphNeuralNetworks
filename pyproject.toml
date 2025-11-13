@@ -1,0 +1,38 @@
+[project]
+name = "graphneuralnetworks"
+version = "0.1.0"
+description = "Writing a Graph Neural Network from scratch"
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "torch (>=2.6.0,<3.0.0)",
+    "torchvision (>=0.21.0)",
+    "torchaudio (>=2.6.0,<3.0.0)",
+    "rdkit",
+    "pandas",
+    "jupyter",
+    "matplotlib",
+    "seaborn",
+]
+
+[tool.poetry]
+packages = [{include = "Graphs", from = "src"}]
+
+[tool.poetry.dependencies]
+torch = {version = ">=2.6.0,<3.0.0", source = "pytorch"}
+torchvision = {version = ">=0.21.0", source = "pytorch"}
+torchaudio = {version = ">=2.6.0,<3.0.0", source = "pytorch"}
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cpu"
+priority = "explicit"

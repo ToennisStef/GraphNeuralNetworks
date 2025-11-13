@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>D3 Graph with JSON</title>
+  <style>
+    body { margin: 0; 
+           font-family: sans-serif; }
+    svg { width: 100vw; height: 100vh; }
+    line {
+      stroke: #aaa;
+    }
+    circle {
+      fill: #0074D9;
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+  </style>
+</head>
+<body>
+  <svg></svg>
+
+  <!-- D3.js library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Graph drawing logic -->
+  <script src="graph.js"></script>
+
+  <!-- Load data and call function -->
+  <script>
+    d3.json("graphData.json").then(data => {
+      drawGraph(data.nodes, data.links);
+    }).catch(error => {
+      console.error("Error loading JSON:", error);
+    });
+  </script>
+</body>
+</html>

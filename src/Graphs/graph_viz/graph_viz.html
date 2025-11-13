@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>D3 Graph with JSON</title>
+  <style>
+    body { margin: 0; 
+           font-family: sans-serif; }
+    svg { width: 100vw; height: 100vh; }
+    line {
+      stroke: #aaa;
+    }
+    circle {
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+    #global-vals {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.8);
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <div id="global-vals"></div>
+  <svg></svg>
+
+  <!-- D3.js library -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Graph drawing logic -->
+  <script src="graph.js"></script>
+
+  <!-- Load data and call function -->
+  <script>
+    d3.json("graphData.json").then(data => {
+      // Display global_vals
+      const globalValsDiv = document.getElementById("global-vals");
+      globalValsDiv.innerHTML = `<strong>Global Values:</strong><br>${JSON.stringify(data.global_vals, null, 2)}`;
+
+      // Draw the graph
+      drawGraph(data.nodes, data.links);
+    }).catch(error => {
+      console.error("Error loading JSON:", error);
+    });
+  </script>
+</body>
+</html>
